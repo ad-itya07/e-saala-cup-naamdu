@@ -5,11 +5,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ModeToggle } from "@/components/mode-toggle";
 import SubjectSidebar from "@/components/subject-sidebar";
 import ChapterCard from "@/components/chapter-card";
+import ChapterDetailsModal from "@/components/chapter-detail-modal";
 import FilterBar from "@/components/filter-bar";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import MobileHeader from "@/components/mobile-header";
 import { chapterData } from "@/lib/data";
 import { getChapterIcon } from "@/lib/icons";
+
+interface Chapter {
+  subject: string;
+  chapter: string;
+  class: string;
+  unit: string;
+  yearWiseQuestionCount: Record<string, number>;
+  questionSolved: number;
+  status: string;
+  isWeakChapter: boolean;
+}
 
 export default function ChapterList() {
   const [activeSubject, setActiveSubject] = useState<
@@ -20,6 +32,11 @@ export default function ChapterList() {
   const [showNotStarted, setShowNotStarted] = useState(false);
   const [showWeakChapters, setShowWeakChapters] = useState(false);
   const [sortAscending, setSortAscending] = useState(true);
+
+  // Modal state
+  const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -82,6 +99,19 @@ export default function ChapterList() {
 
   const handleSort = () => {
     setSortAscending(!sortAscending);
+  };
+
+  const handleChapterClick = (chapter: Chapter, index: number) => {
+    setSelectedChapter(chapter);
+    setCurrentChapterIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const handleModalNavigate = (newIndex: number) => {
+    if (newIndex >= 0 && newIndex < filteredChapters.length) {
+      setSelectedChapter(filteredChapters[newIndex]);
+      setCurrentChapterIndex(newIndex);
+    }
   };
 
   const PhysicsSubjectIcon = getChapterIcon("physics");
@@ -167,7 +197,11 @@ export default function ChapterList() {
                 />
                 <div className="space-y-2 p-2">
                   {filteredChapters.map((chapter, index) => (
-                    <ChapterCard key={index} chapter={chapter} />
+                    <ChapterCard
+                      key={index}
+                      chapter={chapter}
+                      onClick={() => handleChapterClick(chapter, index)}
+                    />
                   ))}
                 </div>
               </TabsContent>
@@ -190,7 +224,11 @@ export default function ChapterList() {
                 />
                 <div className="space-y-2 p-2">
                   {filteredChapters.map((chapter, index) => (
-                    <ChapterCard key={index} chapter={chapter} />
+                    <ChapterCard
+                      key={index}
+                      chapter={chapter}
+                      onClick={() => handleChapterClick(chapter, index)}
+                    />
                   ))}
                 </div>
               </TabsContent>
@@ -213,7 +251,11 @@ export default function ChapterList() {
                 />
                 <div className="space-y-2 p-2">
                   {filteredChapters.map((chapter, index) => (
-                    <ChapterCard key={index} chapter={chapter} />
+                    <ChapterCard
+                      key={index}
+                      chapter={chapter}
+                      onClick={() => handleChapterClick(chapter, index)}
+                    />
                   ))}
                 </div>
               </TabsContent>
@@ -278,12 +320,26 @@ export default function ChapterList() {
 
             <div className="space-y-2 mt-4">
               {filteredChapters.map((chapter, index) => (
-                <ChapterCard key={index} chapter={chapter} />
+                <ChapterCard
+                  key={index}
+                  chapter={chapter}
+                  onClick={() => handleChapterClick(chapter, index)}
+                />
               ))}
             </div>
           </div>
         )}
       </div>
+
+      {/* Chapter Details Modal */}
+      <ChapterDetailsModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        chapter={selectedChapter}
+        chapters={filteredChapters}
+        currentIndex={currentChapterIndex}
+        onNavigate={handleModalNavigate}
+      />
     </div>
   );
 }
