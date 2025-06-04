@@ -41,7 +41,7 @@ export default function SubjectSidebar({
       <div className="space-y-2">
         <Button
           variant="default"
-          className={`w-full bg-background text-white justify-between flex ${activeSubject === "physics" ? "bg-blue-950 text-white dark:bg-blue-950 dark:text-white" : ""}`}
+          className={`w-full bg-background dark:text-white text-black hover:text-white justify-between flex ${activeSubject === "physics" ? "bg-blue-950 text-white dark:bg-blue-950 dark:text-white" : ""}`}
           onClick={() => setActiveSubject("physics")}
         >
           <div>
