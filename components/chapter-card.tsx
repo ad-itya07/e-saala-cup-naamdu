@@ -13,9 +13,10 @@ interface ChapterCardProps {
     status: string;
     isWeakChapter: boolean;
   };
+  onClick?: () => void;
 }
 
-export default function ChapterCard({ chapter }: ChapterCardProps) {
+export default function ChapterCard({ chapter, onClick }: ChapterCardProps) {
   // Get the latest two years from the yearWiseQuestionCount
   const years = Object.keys(chapter.yearWiseQuestionCount).sort(
     (a, b) => Number.parseInt(b) - Number.parseInt(a)
@@ -41,7 +42,7 @@ export default function ChapterCard({ chapter }: ChapterCardProps) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <div className="border rounded-lg p-3 hover:bg-accent/50 transition-colors">
+    <div className="border rounded-lg p-3 hover:bg-accent/50 transition-colors" onClick={onClick}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="text-primary">
