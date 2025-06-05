@@ -171,9 +171,9 @@ export default function FilterBar({
             );
             container?.scrollBy({ left: 100, behavior: "smooth" });
           }}
-          className="absolute right-0 top-1/2 -translate-y-1/2 h-full w-10 flex items-center justify-center z-10 rounded-full shadow backdrop-blur-sm bg-background opacity-70 transition"
+          className="absolute m-0 right-0 top-1/2 -translate-y-1/2 h-full w-10 flex items-center justify-center z-10 shadow backdrop-blur-sm opacity-80 transition rounded-l-full dark:bg-blend-darken"
         >
-          <ChevronRight className="h-4 w-4 text-black dark:text-white" size={15} />
+          <ChevronRight className="h-5 w-5 text-black dark:text-white" size={15} />
         </button>
       )}
     </div>
