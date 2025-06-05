@@ -154,7 +154,7 @@ export default function ChapterList() {
 
                   <TabsTrigger
                     value="chemistry"
-                    className="text-xs px-2 py-1 rounded-lg data-[state=active]:bg-[#2c2c3e] data-[state=active]:shadow-md"
+                    className="text-xs px-2 py-1 rounded-lg data-[state=active]:bg-[#2c2c3e] data-[state=active]:shadow-md data-[state=active]:text-white"
                   >
                     <div className="flex flex-col items-center space-y-0.5">
                       <div className="bg-green-500 text-white rounded p-1">
@@ -166,7 +166,7 @@ export default function ChapterList() {
 
                   <TabsTrigger
                     value="mathematics"
-                    className="text-xs px-2 py-1 rounded-lg data-[state=active]:bg-[#2c2c3e] data-[state=active]:shadow-md"
+                    className="text-xs px-2 py-1 rounded-lg data-[state=active]:bg-[#2c2c3e] data-[state=active]:shadow-md data-[state=active]:text-white"
                   >
                     <div className="flex flex-col items-center space-y-0.5">
                       <div className="bg-blue-500 text-white rounded p-1">
