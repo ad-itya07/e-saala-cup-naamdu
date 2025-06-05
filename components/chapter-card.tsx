@@ -42,7 +42,10 @@ export default function ChapterCard({ chapter, onClick }: ChapterCardProps) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <div className="border rounded-lg p-3 hover:bg-accent/50 transition-colors" onClick={onClick}>
+    <div
+      className="border rounded-lg p-3 hover:bg-accent/50 transition-colors"
+      onClick={onClick}
+    >
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="text-primary">
@@ -50,11 +53,16 @@ export default function ChapterCard({ chapter, onClick }: ChapterCardProps) {
           </div>
           <div className="flex-row gap-2">
             <h3 className="font-medium">
-              {!isMobile
-                ? chapter.chapter
-                : `${chapter.chapter.slice(0, 20)}${
-                    chapter.chapter.length > 12 ? "..." : ""
-                  }`}
+              {!isMobile ? (
+                <div>
+                  <span>{chapter.chapter}</span>
+                  <span className="text-sm text-muted-foreground mx-10">click to view year wise analysis</span>
+                </div>
+              ) : (
+                `${chapter.chapter.slice(0, 20)}${
+                  chapter.chapter.length > 12 ? "..." : ""
+                }`
+              )}
             </h3>
             {isMobile && (
               <div className="flex items-center gap-2">
