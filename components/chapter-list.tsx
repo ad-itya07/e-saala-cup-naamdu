@@ -138,14 +138,14 @@ export default function ChapterList() {
               className="w-full space-y-5"
               onValueChange={(value) => setActiveSubject(value as any)}
             >
-              <div className="flex justify-center px-2 py-1 border-b">
+              <div className="flex justify-center px-2 pb-5 border-b">
                 <TabsList className="grid grid-cols-3 w-full max-w-sm gap-1 bg-transparent p-1 rounded-lg">
                   <TabsTrigger
                     value="physics"
                     className="text-xs px-2 py-1 rounded-lg data-[state=active]:bg-[#2c2c3e] data-[state=active]:shadow-md data-[state=active]:text-white"
                   >
                     <div className="flex flex-col items-center space-y-0.5">
-                      <div className="bg-orange-500 text-white rounded p-1">
+                      <div className="bg-orange-500 text-white rounded p-1 mb-1">
                         <PhysicsSubjectIcon />
                       </div>
                       <span className="text-[11px] font-medium">Phy</span>
